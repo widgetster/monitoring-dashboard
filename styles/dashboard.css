@@ -1,5 +1,6 @@
 .dashboard-cont {
   margin-top: 20px;
+  margin-bottom: 40px;
   display: flex;
   column-gap: 30px;
 }
