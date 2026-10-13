@@ -73,43 +73,22 @@ function writeRobotsHTML(robots) {
 }
 
 
+function filterRobots(filter) {
+  const filteredRobots = robots.filter((robot) => {
+    return robot.status === `${filter}`;
+  });
+
+  return filteredRobots;
+}
+
+
 export function renderRobotsSummary() {
 
-  if (filter === 'all') {
-    console.log('render all');
-
+  if (filter === 'All') {
     writeRobotsHTML(robots);
   }
-  else if (filter === 'running') {
-    console.log('render running');
-
-    const filteredRobots = robots.filter((robot) => {
-      if (robot.status === 'Running') {
-        return true;
-      }
-    });
-
-    writeRobotsHTML(filteredRobots);
-  }
-  else if (filter === 'warning') {
-    console.log('render warning');
-
-    const filteredRobots = robots.filter((robot) => {
-      if (robot.status === 'Warning') {
-        return true;
-      }
-    });
-
-    writeRobotsHTML(filteredRobots);
-  }
-  else if (filter === 'stopped') {
-    console.log('render stopped');
-
-    const filteredRobots = robots.filter((robot) => {
-      if (robot.status === 'Stopped') {
-        return true;
-      }
-    });
+  else {
+    const filteredRobots = filterRobots(filter);
 
     writeRobotsHTML(filteredRobots);
   }
@@ -119,7 +98,7 @@ export function renderRobotsSummary() {
 
 export function simulateData() {
   const temperatureValue = Math.floor(Math.random() * 46) + 25; // 25 to 70
-  const robotsIndex = Math.floor(Math.random() * 5); // 0 to 4
+  const robotsIndex = Math.floor(Math.random() * robots.length); // 0 to (length - 1)
 
   robots[robotsIndex].temperature = temperatureValue;
 
