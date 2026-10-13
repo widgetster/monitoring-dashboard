@@ -24,22 +24,25 @@
       <div class="dashboard-cont">
         <div>
           Running          
-          <div class="dashboard-data">3</div>
+          <div class="dashboard-data js-running-count">0</div>
         </div>
 
         <div>
           Warning
-          <div class="dashboard-data">4</div>
+          <div class="dashboard-data js-warning-count">0</div>
         </div>
 
         <div>
           Stopped
-          <div class="dashboard-data">2</div>
+          <div class="dashboard-data js-stopped-count">0</div>
         </div>
       </div>
 
+
+      <button class="js-start-stop-button"><span class="js-start-stop-span">Start</span> Simulation</button> 
+
       
-      <div>        
+      <div class="robot-container">        
         Robots
 
         <div class="dashboard-cont js-robots-summary">
@@ -77,7 +80,7 @@
       </div>
 
 
-      <button class="js-start-stop-button"><p class="js-start-stop-p">Start</p> Simulation</button>      
+           
 
 
       <script type="module" src="scripts/dashboard.js"></script>

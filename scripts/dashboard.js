@@ -63,21 +63,66 @@ function startStopSimulation() {
   if (!isSimulating) {
     isSimulating = true;
 
-    document.querySelector('.js-start-stop-p')
+    document.querySelector('.js-start-stop-span')
       .innerHTML = 'Stop';
 
     intervalId = setInterval(() => {
         simulateData();
         renderRobotsSummary();
+        countRunning();
+        countWarning();
+        countStopped();
       }, 1000);
   }
   else {
     clearInterval(intervalId);
     isSimulating = false;
 
-    document.querySelector('.js-start-stop-p')
+    document.querySelector('.js-start-stop-span')
       .innerHTML = 'Start';
   }  
+}
+
+
+function countRunning() {
+  let count = 0;
+
+  robots.forEach(robot => {
+    if (robot.status === 'Running') {
+      count++;
+    }
+  });
+
+  document.querySelector('.js-running-count')
+    .innerHTML = count;
+}
+
+
+function countWarning() {
+  let count = 0;
+
+  robots.forEach(robot => {
+    if (robot.status === 'Warning') {
+      count++;
+    }
+  });
+
+  document.querySelector('.js-warning-count')
+    .innerHTML = count;
+}
+
+
+function countStopped() {
+  let count = 0;
+
+  robots.forEach(robot => {
+    if (robot.status === 'Stopped') {
+      count++;
+    }
+  });
+
+  document.querySelector('.js-stopped-count')
+    .innerHTML = count;
 }
 
 
