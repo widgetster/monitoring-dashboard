@@ -1,94 +1,40 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
-    <title>Factory Dashboard</title>
-
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Load a font called Roboto from Google Fonts. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <meta name="theme-color" content="#edf5fc">
+    <title>Factory Dashboard</title>
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/dashboard.css">
-
-
-    <body>
-      FACTORY DASHBOARD
-
-      <div class="dashboard-cont">
-        <div>
-          Running          
-          <div class="dashboard-data js-running-count">0</div>
-        </div>
-
-        <div>
-          Warning
-          <div class="dashboard-data js-warning-count">0</div>
-        </div>
-
-        <div>
-          Stopped
-          <div class="dashboard-data js-stopped-count">0</div>
-        </div>
-      </div>
-
-
-      <button class="js-start-stop-button"><span class="js-start-stop-span">Start</span> Simulation</button> 
-
-      <button class="js-all-button">All</button> 
-      <button class="js-running-button">Running</button> 
-      <button class="js-warning-button">Warning</button> 
-      <button class="js-stopped-button">Stopped</button> 
-
-      
-      <div class="robot-container">        
-        Robots
-
-        <div class="dashboard-cont js-robots-summary">
-          <div>
-            ID          
-            <div class="dashboard-data js-robots-id">
-
-            </div>
-
-          </div>
-
-          <div>
-            Name
-            <div class="dashboard-data js-robots-name">
-              
-            </div>
-          </div>
-
-          <div>
-            Status
-            <div class="dashboard-data js-robots-status">
-              
-            </div>
-          </div>
-
-          <div>
-            Temerature
-            <div class="dashboard-data js-robots-temperature">
-              
-            </div>
-          </div>
-        </div>
-
-        
-      </div>
-
-
-           
-
-
-      <script type="module" src="scripts/dashboard.js"></script>
-    </body>
   </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <a class="brand" href="./dashboard.html" aria-label="Factory dashboard home"><span class="brand-icon" aria-hidden="true">▥</span> Factory<span class="brand-divider">/</span><span class="brand-section">Overview</span></a>
+        <span class="environment"><span class="dot"></span> Simulation workspace</span>
+      </header>
+      <section class="overview" aria-labelledby="page-title">
+        <div><p class="eyebrow">OPERATIONS OVERVIEW</p><h1 id="page-title">Factory dashboard</h1><p class="subtitle">A clear view of your robots, all in one place.</p></div>
+        <button class="simulation-button js-start-stop-button" aria-pressed="false"><span class="simulation-icon" aria-hidden="true">▶</span><span><span class="js-start-stop-span">Start</span> simulation</span></button>
+      </section>
+      <section class="dashboard-cont status-grid" aria-label="Robot status overview">
+        <article class="status-card"><div class="card-label"><span><span class="status-dot running"></span>Running</span><span class="card-icon" aria-hidden="true">↗</span></div><div class="dashboard-data js-running-count">0</div><p>Operating normally</p></article>
+        <article class="status-card"><div class="card-label"><span><span class="status-dot warning"></span>Warning</span><span class="card-icon" aria-hidden="true">!</span></div><div class="dashboard-data js-warning-count">0</div><p>Needs attention</p></article>
+        <article class="status-card"><div class="card-label"><span><span class="status-dot stopped"></span>Stopped</span><span class="card-icon" aria-hidden="true">Ⅱ</span></div><div class="dashboard-data js-stopped-count">0</div><p>Currently inactive</p></article>
+      </section>
+      <section class="robot-container" aria-labelledby="robots-title">
+        <div class="robot-header"><div><h2 id="robots-title">Robots</h2><p>Monitor status and temperature across your fleet.</p></div><div class="filters" role="group" aria-label="Filter robots by status"><button class="js-all-button is-active" aria-pressed="true">All</button><button class="js-running-button" aria-pressed="false">Running</button><button class="js-warning-button" aria-pressed="false">Warning</button><button class="js-stopped-button" aria-pressed="false">Stopped</button></div></div>
+        <div class="table-scroll"><div class="dashboard-cont js-robots-summary robot-table" role="table" aria-label="Robot details">
+          <div role="rowgroup"><div class="column-heading" role="columnheader">ROBOT ID</div><div class="dashboard-data js-robots-id"></div></div>
+          <div role="rowgroup"><div class="column-heading" role="columnheader">NAME</div><div class="dashboard-data js-robots-name"></div></div>
+          <div role="rowgroup"><div class="column-heading" role="columnheader">STATUS</div><div class="dashboard-data js-robots-status"></div></div>
+          <div role="rowgroup"><div class="column-heading" role="columnheader">TEMPERATURE</div><div class="dashboard-data js-robots-temperature"></div></div>
+        </div></div>
+        <div class="table-footer"><span class="js-fleet-summary">5 robots in your fleet</span><span>Temperature in °C</span></div>
+      </section>
+      <footer class="page-footer"><span>Factory monitoring</span><span>Simple insights. Better operations.</span></footer>
+    </main>
+    <script type="module" src="scripts/dashboard.js"></script>
+  </body>
 </html>

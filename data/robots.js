@@ -35,6 +35,7 @@ export const robots = [
 
 
 function writeRobotsHTML(robots) {
+  document.querySelector('.js-fleet-summary').textContent = `${robots.length} ${robots.length === 1 ? 'robot' : 'robots'} shown`;
   let robotsIdHTML = '';
   let robotsNameHTML = '';
   let robotsStatusHTML = '';
@@ -51,11 +52,11 @@ function writeRobotsHTML(robots) {
     `;
 
     robotsStatusHTML += `
-    <div>${robot.status}</div>     
+    <div><span class="status-badge status-${robot.status.toLowerCase()}">${robot.status}</span></div>     
     `;
 
     robotsTemperatureHTML += `
-    <div>${robot.temperature}</div>     
+    <div>${robot.temperature}<span class="temperature-unit">°C</span></div>     
     `;
   });
 
