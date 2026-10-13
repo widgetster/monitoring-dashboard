@@ -2,6 +2,7 @@ import { robots, countRunning, countWarning , countStopped, renderRobotsSummary,
 
 let isSimulating = false;
 let intervalId;
+export let filter = 'all';
 
 
 function startStopSimulation() {
@@ -26,12 +27,40 @@ function startStopSimulation() {
     document.querySelector('.js-start-stop-span')
       .innerHTML = 'Start';
   }  
-  
+
 }
 
 
 document.querySelector('.js-start-stop-button')
-    .addEventListener('click', () => {
-      
-      startStopSimulation();
-    });
+  .addEventListener('click', () => {
+    
+    startStopSimulation();
+  });
+
+
+document.querySelector('.js-all-button')
+  .addEventListener('click', () => {
+
+    filter = 'all';
+  });
+
+
+document.querySelector('.js-running-button')
+  .addEventListener('click', () => {
+
+    filter = 'running';
+  });
+
+
+document.querySelector('.js-warning-button')
+  .addEventListener('click', () => {
+
+    filter = 'warning';
+  });
+
+
+document.querySelector('.js-stopped-button')
+  .addEventListener('click', () => {
+
+    filter = 'stopped';
+  });

@@ -1,3 +1,5 @@
+import { filter } from "../scripts/dashboard.js";
+
 export const robots = [
   {
     id: 532,
@@ -32,11 +34,12 @@ export const robots = [
 ];
 
 
-export function renderRobotsSummary() {
+function writeRobotsHTML(robots) {
   let robotsIdHTML = '';
   let robotsNameHTML = '';
   let robotsStatusHTML = '';
   let robotsTemperatureHTML = '';
+
 
   robots.forEach((robot) => {
     robotsIdHTML += `
@@ -67,6 +70,50 @@ export function renderRobotsSummary() {
 
   document.querySelector('.js-robots-temperature')
     .innerHTML = robotsTemperatureHTML;
+}
+
+
+export function renderRobotsSummary() {
+
+  if (filter === 'all') {
+    console.log('render all');
+
+    writeRobotsHTML(robots);
+  }
+  else if (filter === 'running') {
+    console.log('render running');
+
+    const filteredRobots = robots.filter((robot) => {
+      if (robot.status === 'Running') {
+        return true;
+      }
+    });
+
+    writeRobotsHTML(filteredRobots);
+  }
+  else if (filter === 'warning') {
+    console.log('render warning');
+
+    const filteredRobots = robots.filter((robot) => {
+      if (robot.status === 'Warning') {
+        return true;
+      }
+    });
+
+    writeRobotsHTML(filteredRobots);
+  }
+  else if (filter === 'stopped') {
+    console.log('render stopped');
+
+    const filteredRobots = robots.filter((robot) => {
+      if (robot.status === 'Stopped') {
+        return true;
+      }
+    });
+
+    writeRobotsHTML(filteredRobots);
+  }
+
 }
 
 
