@@ -63,6 +63,9 @@ function startStopSimulation() {
   if (!isSimulating) {
     isSimulating = true;
 
+    document.querySelector('.js-start-stop-p')
+      .innerHTML = 'Stop';
+
     intervalId = setInterval(() => {
         simulateData();
         renderRobotsSummary();
@@ -71,20 +74,15 @@ function startStopSimulation() {
   else {
     clearInterval(intervalId);
     isSimulating = false;
-  }
-  
+
+    document.querySelector('.js-start-stop-p')
+      .innerHTML = 'Start';
+  }  
 }
 
 
-document.querySelector('.js-start-button')
+document.querySelector('.js-start-stop-button')
     .addEventListener('click', () => {
       
-      startStopSimulation();
-    });
-
-
-document.querySelector('.js-stop-button')
-    .addEventListener('click', () => {
-
       startStopSimulation();
     });
